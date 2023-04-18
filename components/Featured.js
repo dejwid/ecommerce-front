@@ -61,6 +61,9 @@ export default function Featured({product}) {
   function addFeaturedToCart() {
     addProduct(product._id);
   }
+  if (!product){
+    return <></>
+  }
   return (
     <Bg>
       <Center>
