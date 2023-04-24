@@ -114,7 +114,7 @@ export default function CartPage() {
       const telephoneNumber = "56975173774"
       let whatsappMsg = `Hola Tortita! Mi número de carrito es ${cartId} y me interesa completar la orden.`
       let finalMessage = `${whatsAppBaseURL}${telephoneNumber}?text=${encodeURIComponent(whatsappMsg)}`
-      window.location(finalMessage)
+      window.location = finalMessage
     }
     if (response.data.url) {
       window.location = response.data.url;
