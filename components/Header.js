@@ -72,7 +72,7 @@ export default function Header() {
           <Logo href={'/'}>Ecommerce</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
-            <NavLink href={'/products'}>Products</NavLink>
+            <NavLink href={'/products'}>Productos</NavLink>
             {/* <NavLink href={'/categories'}>Categories</NavLink> */}
             {/* <NavLink href={'/account'}>Cuenta</NavLink> */}
             <NavLink href={'/cart'}>Carrito ({cartProducts.length})</NavLink>
