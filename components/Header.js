@@ -5,6 +5,11 @@ import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
 
+// #ff9603
+// #2d03ff
+// #ff03d5
+// #d5ff03
+
 const StyledHeader = styled.header`
   background-color: #222;
 `;

@@ -60,6 +60,8 @@ export default function Featured({ product }) {
   const { addProduct } = useContext(CartContext);
   function addFeaturedToCart() {
     addProduct(product._id);
+    console.log("hola")
+    window.location('cart')
   }
   if (!product) {
     return <></>
