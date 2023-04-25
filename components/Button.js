@@ -1,5 +1,5 @@
-import styled, {css} from "styled-components";
-import {primary} from "@/lib/colors";
+import styled, { css } from "styled-components";
+import { primary, secondary } from "@/lib/colors";
 
 export const ButtonStyle = css`
   border:0;
@@ -47,6 +47,16 @@ export const ButtonStyle = css`
     border: 1px solid ${primary};
     color:${primary};
   `}
+  ${props => props.secondary && !props.outline && css`
+    background-color: ${secondary};
+    border: 1px solid ${secondary};
+    color:#fff;
+  `}
+  ${props => props.secondary && props.outline && css`
+    background-color: transparent;
+    border: 1px solid ${secondary};
+    color:${secondary};
+  `}
   ${props => props.size === 'l' && css`
     font-size:1.2rem;
     padding: 10px 20px;
@@ -60,7 +70,7 @@ const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 
-export default function Button({children,...rest}) {
+export default function Button({ children, ...rest }) {
   return (
     <StyledButton {...rest}>{children}</StyledButton>
   );

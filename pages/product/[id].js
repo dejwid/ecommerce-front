@@ -1,15 +1,17 @@
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
-import {mongooseConnect} from "@/lib/mongoose";
-import {Product} from "@/models/Product";
+import { mongooseConnect } from "@/lib/mongoose";
+import { Product } from "@/models/Product";
 import styled from "styled-components";
 import WhiteBox from "@/components/WhiteBox";
 import ProductImages from "@/components/ProductImages";
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
-import {useContext} from "react";
-import {CartContext} from "@/components/CartContext";
+import { useContext } from "react";
+import { CartContext } from "@/components/CartContext";
+import Link from "next/link";
+
 
 const ColWrapper = styled.div`
   display: grid;
@@ -29,8 +31,19 @@ const Price = styled.span`
   font-size: 1.4rem;
 `;
 
-export default function ProductPage({product}) {
-  const {addProduct} = useContext(CartContext);
+const preguntarWhatsapp = ({ _id, title }) => {
+  const whatsAppBaseURL = "https://wa.me/"
+  const telephoneNumber = "56975173774"
+  let whatsappMsg = `Hola Tortita! Tengo una consulta sobre el producto ${title} (${_id}) y me interesa saber más información.`
+  let finalMessage = `${whatsAppBaseURL}${telephoneNumber}?text=${encodeURIComponent(whatsappMsg)}`
+  window.open(finalMessage, '_blank')
+}
+
+export default function ProductPage({ product }) {
+  const { addProduct } = useContext(CartContext);
+  const addProductToCart = (id) => {
+    addProduct(id)
+  }  
   return (
     <>
       <Header />
@@ -47,8 +60,13 @@ export default function ProductPage({product}) {
                 <Price>${product.price}</Price>
               </div>
               <div>
-                <Button primary onClick={() => addProduct(product._id)}>
-                  <CartIcon />Add to cart
+                <Button primary>
+                  <Link href={"/cart"} onClick={() => addProductToCart(product._id)}>
+                    <CartIcon />Agregar al Carrito
+                  </Link>
+                </Button>
+                <Button secondary onClick={() => preguntarWhatsapp(product)}>
+                  <CartIcon />Consultar más información
                 </Button>
               </div>
             </PriceRow>
@@ -61,7 +79,7 @@ export default function ProductPage({product}) {
 
 export async function getServerSideProps(context) {
   await mongooseConnect();
-  const {id} = context.query;
+  const { id } = context.query;
   const product = await Product.findById(id);
   return {
     props: {

@@ -58,8 +58,12 @@ const Price = styled.div`
   }
 `;
 
+
 export default function ProductBox({_id,title,description,price,images}) {
   const {addProduct} = useContext(CartContext);
+  const addProductToCart = (id) => {
+    addProduct(id)
+  }  
   const url = '/product/'+_id;
   return (
     <ProductWrapper>
@@ -74,8 +78,10 @@ export default function ProductBox({_id,title,description,price,images}) {
           <Price>
             ${price}
           </Price>
-          <Button block onClick={() => addProduct(_id)} primary outline>
-            Add to cart
+          <Button block primary outline>
+          <Link href={"/cart"} onClick={() => addProductToCart(_id)}>
+            Agregar al Carrito
+          </Link>
           </Button>
         </PriceRow>
       </ProductInfoBox>
