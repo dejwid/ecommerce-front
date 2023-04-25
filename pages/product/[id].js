@@ -10,6 +10,8 @@ import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext";
+import Link from "next/link";
+
 
 const ColWrapper = styled.div`
   display: grid;
@@ -39,6 +41,9 @@ const preguntarWhatsapp = ({ _id, title }) => {
 
 export default function ProductPage({ product }) {
   const { addProduct } = useContext(CartContext);
+  const addProductToCart = (id) => {
+    addProduct(id)
+  }  
   return (
     <>
       <Header />
@@ -55,8 +60,10 @@ export default function ProductPage({ product }) {
                 <Price>${product.price}</Price>
               </div>
               <div>
-                <Button primary onClick={() => addProduct(product._id)}>
-                  <CartIcon />Agregar al Carrito
+                <Button primary>
+                  <Link href={"/cart"} onClick={() => addProductToCart(product._id)}>
+                    <CartIcon />Agregar al Carrito
+                  </Link>
                 </Button>
                 <Button secondary onClick={() => preguntarWhatsapp(product)}>
                   <CartIcon />Consultar más información
