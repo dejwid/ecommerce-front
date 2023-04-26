@@ -4,6 +4,7 @@ import Center from "@/components/Center";
 import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
+import CartIcon from "@/components/icons/CartIcon";
 
 // #ff9603
 // #2d03ff
@@ -74,18 +75,17 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
+          <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
+            <BarsIcon />
+          </NavButton>
           <Logo href={'/'}>eCommerce Demo</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>Productos</NavLink>
-            <NavLink href={'/cart'}>Carrito ({cartProducts.length})</NavLink>
           </StyledNav>
-          <NavButton>
-            <NavLink href={'/cart'}>Carrito ({cartProducts.length})</NavLink>
-          </NavButton>
-          <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
-            <BarsIcon />
-          </NavButton>
+          <NavLink href={'/cart'}>
+            <CartIcon /> ({cartProducts.length})
+          </NavLink>
         </Wrapper>
       </Center>
     </StyledHeader>
