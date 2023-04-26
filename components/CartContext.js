@@ -9,12 +9,12 @@ export function CartContextProvider({ children }) {
     if (cartProducts?.length > 0) {
       ls?.setItem("cart", JSON.stringify(cartProducts));
     }
-  }, [cartProducts]);
+  }, [cartProducts, ls]);
   useEffect(() => {
     if (ls && ls.getItem("cart")) {
       setCartProducts(JSON.parse(ls.getItem("cart")));
     }
-  }, []);
+  }, [ls]);
   function addProduct(productId) {
     setCartProducts((prev) => [...prev, productId]);
     // console.log(window.location);

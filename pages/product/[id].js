@@ -39,18 +39,20 @@ const preguntarWhatsapp = ({ _id, title }) => {
   window.open(finalMessage, '_blank')
 }
 
+
 export default function ProductPage({ product }) {
   const { addProduct } = useContext(CartContext);
   const addProductToCart = (id) => {
     addProduct(id)
   }  
+  const productImages = product.images.length > 0 ? product.images : ["https://demofree.sirv.com/nope-not-here.jpg?w=300"]
   return (
     <>
       <Header />
       <Center>
         <ColWrapper>
           <WhiteBox>
-            <ProductImages images={product.images} />
+            <ProductImages images={productImages} />
           </WhiteBox>
           <div>
             <Title>{product.title}</Title>
@@ -60,12 +62,12 @@ export default function ProductPage({ product }) {
                 <Price>${product.price}</Price>
               </div>
               <div>
-                <Button primary>
-                  <Link href={"/cart"} onClick={() => addProductToCart(product._id)}>
-                    <CartIcon />Agregar al Carrito
-                  </Link>
+              <Link href={"/cart"} onClick={() => addProductToCart(product._id)}>
+                <Button block primary>
+                    <CartIcon /> Comprar
                 </Button>
-                <Button secondary onClick={() => preguntarWhatsapp(product)}>
+                </Link>
+                <Button block secondary onClick={() => preguntarWhatsapp(product)}>
                   <CartIcon />Consultar más información
                 </Button>
               </div>
