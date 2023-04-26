@@ -30,8 +30,8 @@ const ProductInfoCell = styled.td`
 `;
 
 const ProductImageBox = styled.div`
-  width: 70px;
-  height: 100px;
+  width: 50px;
+  height: 80px;
   padding: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
@@ -39,13 +39,13 @@ const ProductImageBox = styled.div`
   justify-content: center;
   border-radius: 10px;
   img {
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 50px;
+    max-height: 50px;
   }
   @media screen and (min-width: 768px) {
     padding: 10px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     img {
       max-width: 80px;
       max-height: 80px;
@@ -165,6 +165,7 @@ export default function CartPage() {
               <Table>
                 <thead>
                   <tr>
+                    <th>Imagen</th>
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
@@ -175,15 +176,20 @@ export default function CartPage() {
                     const productImages =
                       product.images.length > 0
                         ? product.images
-                        : ["https://demofree.sirv.com/nope-not-here.jpg?w=300"];
+                        : ["/no-image.jpg"];
                     return (
                       <tr key={product._id}>
                         <ProductInfoCell>
                           <ProductImageBox>
-                            <Image src={productImages[0]} alt={product.title} />
+                            <Image
+                              src={productImages[0]}
+                              alt={product.title}
+                              width={80}
+                              height={80}
+                            />
                           </ProductImageBox>
-                          {product.title}
                         </ProductInfoCell>
+                        <td>{product.title}</td>
                         <td>
                           <Button
                             onClick={() => lessOfThisProduct(product._id)}
@@ -211,9 +217,14 @@ export default function CartPage() {
                     );
                   })}
                   <tr>
+                    <td>
+                      <b>Total Orden </b>
+                    </td>
                     <td></td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>
+                      <b>$ {total}</b>
+                    </td>
                   </tr>
                 </tbody>
               </Table>

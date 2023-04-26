@@ -45,7 +45,7 @@ export default function ProductPage({ product }) {
   const addProductToCart = (id) => {
     addProduct(id)
   }  
-  const productImages = product.images.length > 0 ? product.images : ["https://demofree.sirv.com/nope-not-here.jpg?w=300"]
+  const productImages = product.images.length > 0 ? product.images : ["/no-image.jpg"]
   return (
     <>
       <Header />

@@ -70,9 +70,11 @@ export default function ProductBox({ _id, title, description, price, images }) {
         <div>
           <Image
             src={
-              images?.[0] || "https://demofree.sirv.com/nope-not-here.jpg?w=300"
+              images?.[0] || "/no-image.jpg"
             }
             alt="Foto Producto"
+            height={250}
+            width={250}
           />
         </div>
       </WhiteBox>
